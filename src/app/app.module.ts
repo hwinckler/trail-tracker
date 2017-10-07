@@ -5,9 +5,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { TrailTrackerProvider } from '../providers/trail-tracker/trail-tracker';
+import { TrailMapperProvider } from '../providers/trail-mapper/trail-mapper';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { HomePage } from '../pages/home/home';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GoogleMaps,
-    Geolocation
+    Geolocation,
+    BackgroundGeolocation,
+    TrailTrackerProvider,
+    TrailMapperProvider
   ]
 })
 export class AppModule {}
