@@ -6,11 +6,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { File } from '@ionic-native/file';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TrailTrackerProvider } from '../providers/trail-tracker/trail-tracker';
 import { TrailMapperProvider } from '../providers/trail-mapper/trail-mapper';
+import { TrailFileWriterProvider } from '../providers/trail-file-writer/trail-file-writer';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { TrailMapperProvider } from '../providers/trail-mapper/trail-mapper';
     Geolocation,
     BackgroundGeolocation,
     TrailTrackerProvider,
-    TrailMapperProvider
+    TrailMapperProvider,
+    TrailFileWriterProvider,
+    File
   ]
 })
 export class AppModule {}
