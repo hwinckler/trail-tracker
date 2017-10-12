@@ -11,7 +11,7 @@ import { File } from '@ionic-native/file';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TrailTrackerProvider } from '../providers/trail-tracker/trail-tracker';
-import { TrailMapperProvider } from '../providers/trail-mapper/trail-mapper';
+//import { TrailMapperProvider } from '../providers/trail-mapper/trail-mapper';
 import { TrailFileWriterProvider } from '../providers/trail-file-writer/trail-file-writer';
 
 @NgModule({
@@ -36,7 +36,7 @@ import { TrailFileWriterProvider } from '../providers/trail-file-writer/trail-fi
     Geolocation,
     BackgroundGeolocation,
     TrailTrackerProvider,
-    TrailMapperProvider,
+    //TrailMapperProvider,
     TrailFileWriterProvider,
     File
   ]

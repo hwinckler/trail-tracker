@@ -1,17 +1,24 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      TrailTracker
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <div id="dados">
-        <h3>Current Latitude: {{trailTrackerProvider.lat}}</h3>
-        <h3>Current Longitude: {{trailTrackerProvider.lng}}</h3>
-        <button ion-button full primary (click)="start()" [disabled]="!trailFileWriterProvider.dirCreated">Start Tracking</button>
-        <button ion-button full primary (click)="stop()">Stop Tracking</button>
-    </div>
+        <button ion-button full 
+          (click)="click()" 
+          style="height:100%"
+          color="{{trailTrackerProvider.isStarted ? 'danger' : ''}}"
+          [disabled]="!trailFileWriterProvider.dirCreated">
+          <div>
+          <img src="assets/trekking-icon.png"/>
+          
+            <h1>{{trailTrackerProvider.isStarted ? 'STOP' : 'START'}}</h1>
+            <h4>lat: {{trailTrackerProvider.lat}}</h4>
+            <h4>lon: {{trailTrackerProvider.lng}}</h4>
+          </div>
+        </button>
     <div #map id="map" style="height:100%"></div>
 </ion-content>

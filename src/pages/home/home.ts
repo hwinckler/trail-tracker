@@ -18,14 +18,15 @@ export class HomePage {
     public trailFileWriterProvider: TrailFileWriterProvider
   ) {}
 
-  start(){
-    this.trailTrackerProvider.startTracking(this.trailFileWriterProvider);
+  click(){
+    if(!this.trailTrackerProvider.isStarted){
+      this.trailTrackerProvider.startTracking(this.trailFileWriterProvider);
+    }
+    else{
+      this.trailTrackerProvider.stopTracking();
+    }
+    
   }
-
-  stop(){
-    this.trailTrackerProvider.stopTracking();
-  }
-
   ngAfterViewInit(){
     //this.trailMapperProvider.initMap(this.mapElement);
     this.trailFileWriterProvider.prepare(Date.now() + "");
