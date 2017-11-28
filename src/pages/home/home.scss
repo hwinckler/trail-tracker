@@ -1,5 +1,9 @@
 page-home {
     .large_button {
-        min-height: 189px !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;        
       } 
 }

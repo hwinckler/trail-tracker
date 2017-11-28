@@ -4,7 +4,7 @@ import { File, IWriteOptions } from '@ionic-native/file';
 @Injectable()
 export class TrailFileWriterProvider {
 
-  private dir: string = "trails-dir";
+  private dir: string = "TrailTracker";
   private path: string = this._file.externalRootDirectory;
   private options: IWriteOptions = {
     append: true
@@ -51,6 +51,15 @@ export class TrailFileWriterProvider {
         }).catch(err => {
           alert('Fail to create file!');
         });
+      });
+    }
+  }
+
+  rename(trailName: string){
+    if(this.dirCreated){
+      return this._file.checkFile(this.path + this.dir + '/', this.fileName)
+      .then(() => {
+        return this._file.moveFile(this.path + this.dir + '/', this.fileName, this.path + this.dir + '/', trailName + '.txt')
       });
     }
   }

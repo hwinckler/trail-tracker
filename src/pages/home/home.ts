@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController, ToastController } from 'ionic-angular';
 import { TrailTrackerProvider } from '../../providers/trail-tracker/trail-tracker';
 //import { TrailMapperProvider } from '../../providers/trail-mapper/trail-mapper';
 import { TrailFileWriterProvider } from '../../providers/trail-file-writer/trail-file-writer';
@@ -14,8 +14,10 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public trailTrackerProvider: TrailTrackerProvider,
-    //public trailMapperProvider: TrailMapperProvider,
-    public trailFileWriterProvider: TrailFileWriterProvider
+   // public trailMapperProvider: TrailMapperProvider,
+    public trailFileWriterProvider: TrailFileWriterProvider,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
   ) {}
 
   click(){
@@ -23,12 +25,42 @@ export class HomePage {
       this.trailTrackerProvider.startTracking(this.trailFileWriterProvider);
     }
     else{
-      this.trailTrackerProvider.stopTracking();
+      let prompt = this.alertCtrl.create({
+        message: "My trail name",
+        inputs: [
+          {
+            name: 'name',
+            placeholder: 'name'
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel'
+          },
+          {
+            text: 'Save',
+            handler: data => {
+              this.trailTrackerProvider.stopTracking(this.trailFileWriterProvider, data.name)
+              .then(() => {
+                let toast = this.toastCtrl.create({
+                  message: 'Save successfully',
+                  duration: 3000,
+                  position: 'top'
+                });
+                toast.present();
+              });
+            }
+          }
+        ]
+      });
+      prompt.present();
+      
     }
     
   }
   ngAfterViewInit(){
     //this.trailMapperProvider.initMap(this.mapElement);
     this.trailFileWriterProvider.prepare(Date.now() + "");
+    //this.trailFileWriterProvider.dirCreated = true;
   }
 }

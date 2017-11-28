@@ -7,9 +7,8 @@
 </ion-header>
 
 <ion-content>
-        <button ion-button full 
+        <button ion-button full class="large_button"
           (click)="click()" 
-          style="height:100%"
           color="{{trailTrackerProvider.isStarted ? 'danger' : ''}}"
           [disabled]="!trailFileWriterProvider.dirCreated">
           <div>

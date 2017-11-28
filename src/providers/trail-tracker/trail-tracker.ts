@@ -26,7 +26,11 @@ export class TrailTrackerProvider {
     timeout: 5000
   };
 
-  constructor(private _zone: NgZone, private _backgroundGeolocation: BackgroundGeolocation, private _geolocation: Geolocation) {
+  constructor(
+    private _zone: NgZone, 
+    private _backgroundGeolocation: BackgroundGeolocation, 
+    private _geolocation: Geolocation
+  ) {
   }
 
   public startTracking(trailFileWrite: TrailFileWriterProvider) {
@@ -52,13 +56,14 @@ export class TrailTrackerProvider {
     this._backgroundGeolocation.start();
   }
 
-  public stopTracking() {
-    this.isStarted = false;
-    this.lat = 0;
-    this.lng = 0; 
-    this._backgroundGeolocation.finish();
-    this._backgroundGeolocation.stop();
-    this.watch.unsubscribe();
-    this.watch.stop();
+  public stopTracking(trailFileWrite: TrailFileWriterProvider, trailName: string) {
+    return trailFileWrite.rename(trailName).then((s) => {
+      this.isStarted = false;
+      this.lat = 0;
+      this.lng = 0; 
+      this._backgroundGeolocation.finish();
+      this._backgroundGeolocation.stop();
+      this.watch.unsubscribe();
+    });
   }
 }
